@@ -1,0 +1,4 @@
+#ifndef MY_ENCAP_COUT_FORMAT
+#define MY_ENCAP_COUT_FORMAT
+
+#endif
