@@ -32,6 +32,9 @@ $(BUILD_FILE) : build/%.o : %.cpp
 	@echo $<
 	g++ $(INCLUDES) -c $< -o $@
 
+clean:
+	rm -f ./build/*.o $(EXE)
+
 test:
 	@echo "EXE                   $(EXE)"
 	@echo "TARGET:               $(TARGET)"
