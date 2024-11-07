@@ -1,10 +1,21 @@
-#include <iostream>
-
 #include "../../include/debug/encap_debug.h"
 
-int debug()
-{
-	std::cout << "debug\n";
+using std::cout;
+using std::endl;
 
-	return 0;
+EncapDebug::EncapDebug() {}
+
+EncapDebug::~EncapDebug() {}
+
+void EncapDebug::FileFuncLine()
+{
+    cout << "[" << __FILE__ << "<" 
+        << __FUNCTION__ << ":" 
+        << __LINE__ << ">]" << endl;
 }
+
+// void EncapDebug::CoutVariableSpace(const char separate_char, 
+//         const char *s, ...)
+// {
+//     printf("%s: ")
+// }
