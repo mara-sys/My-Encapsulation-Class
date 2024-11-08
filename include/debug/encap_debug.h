@@ -4,14 +4,13 @@
 #include <iostream>
 #include <cstdio>
 
-// #define DBG_VN(name)    (#name)
+#define DBG_VN(name)        (#name)
+#define DBG_P(variable, separate)     (cout << DBG_VN(variable) << ": " << variable << separate)
 
 class EncapDebug {
 
 public:
     static void FileFuncLine();
-    // static void CoutVariableSpace(const char separate_char, 
-    //     const char *s, ...);
 
 public:
     EncapDebug();

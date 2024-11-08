@@ -4,7 +4,7 @@
 #
 
 TARGET = ./tests/cout_format
-EXE = $(notdir $(TARGET))
+EXE = $(notdir $(TARGET)).exe
 
 #CURT_DIR = $(shell pwd)
 CURT_DIR = .

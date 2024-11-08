@@ -13,9 +13,3 @@ void EncapDebug::FileFuncLine()
         << __FUNCTION__ << ":" 
         << __LINE__ << ">]" << endl;
 }
-
-// void EncapDebug::CoutVariableSpace(const char separate_char, 
-//         const char *s, ...)
-// {
-//     printf("%s: ")
-// }
