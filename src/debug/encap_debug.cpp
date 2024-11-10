@@ -7,7 +7,7 @@ EncapDebug::EncapDebug() {}
 
 EncapDebug::~EncapDebug() {}
 
-void EncapDebug::FileFuncLine()
+void EncapDebug::PrintFileFuncLine()
 {
     cout << "[" << __FILE__ << "<" 
         << __FUNCTION__ << ":" 

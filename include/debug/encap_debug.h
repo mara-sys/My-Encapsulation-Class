@@ -10,7 +10,7 @@
 class EncapDebug {
 
 public:
-    static void FileFuncLine();
+    static void PrintFileFuncLine();
 
 public:
     EncapDebug();
