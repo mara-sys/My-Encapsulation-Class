@@ -28,12 +28,19 @@ VPATH = $(SRC_FILE_PATH)
 $(EXE) : $(BUILD_FILE)
 	g++ $(BUILD_FILE) -o $(EXE)
 
+# generate static lib
+LIBENCAP = libencap.a
+buildlib : $(BUILD_FILE)
+	ar -r lib/$(LIBENCAP) $(BUILD_FILE)
+
+
 $(BUILD_FILE) : build/%.o : %.cpp
 	@echo $<
 	g++ $(INCLUDES) -c $< -o $@
 
+
 clean:
-	rm -f ./build/*.o $(EXE)
+	rm -f ./build/*.o ./lib/* $(EXE)
 
 test:
 	@echo "EXE                   $(EXE)"
