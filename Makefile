@@ -12,8 +12,10 @@ INC_PATH = $(CURT_DIR)/include
 SRC_PATH = $(CURT_DIR)/src
 BUILD_PATH = $(CURT_DIR)/build
 
-INC_FILE_PATH = $(wildcard $(INC_PATH)/*)
-SRC_FILE_PATH = $(wildcard $(SRC_PATH)/*)
+#INC_FILE_PATH = $(wildcard $(INC_PATH)/*)
+#SRC_FILE_PATH = $(wildcard $(SRC_PATH)/*)
+INC_FILE_PATH = $(shell find $(INC_PATH) -type d)
+SRC_FILE_PATH = $(shell find $(SRC_PATH) -type d)
 SRC_FILE_PATH += $(TARGET)
 
 INC_FILE = $(foreach ifile, $(INC_FILE_PATH), $(wildcard $(ifile)/*.h))
