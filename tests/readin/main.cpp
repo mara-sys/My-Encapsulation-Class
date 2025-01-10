@@ -10,6 +10,7 @@ int main()
 {
     EncapIn In("1Kints.txt");
     int *test1;
+    EncapStopWatch timer;
     test1 = In.ReadAllInts();
     for (int i = 0; i < 1000; i++) {
         cout << test1[i] << std::endl;
@@ -20,6 +21,8 @@ int main()
     for (int i = 0; i < test2.size(); i++) {
         cout << test2[i] << std::endl;
     }
+
+    cout << "time: " << timer.ElapsedTime() << "s\n";
 
     return 0;
 }
