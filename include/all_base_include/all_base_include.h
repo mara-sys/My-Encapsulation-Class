@@ -4,5 +4,6 @@
 #include "../debug/encap_debug.h"
 #include "../debug/encap_stopwatch.h"
 #include "../algs/algs_std_lib/algs_in.h"
+#include "../algs/algs_algorithm/algs_binary_search.h"
 
 #endif
