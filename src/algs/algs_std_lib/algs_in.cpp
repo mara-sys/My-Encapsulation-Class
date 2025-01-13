@@ -52,7 +52,7 @@ string EncapIn::ReadAll()
     // Reposition to previous position
     inf.seekg(pos);
 
-    string s;
+    string s(size, '\0');
     inf.read(&s[0], size);
 
     return s;
