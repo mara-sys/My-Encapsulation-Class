@@ -14,6 +14,7 @@ public:
     EncapIn(const char* file);
     ~EncapIn();
 
+    bool isEmpty();
     std::string ReadLine();
     char ReadChar();
     std::string ReadAll();

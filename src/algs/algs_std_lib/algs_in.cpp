@@ -18,6 +18,11 @@ EncapIn::~EncapIn()
     inf.close();
 }
 
+bool EncapIn::isEmpty()
+{
+    return inf.eof();
+}
+
 string EncapIn::ReadLine()
 {
     string s;
