@@ -2,6 +2,7 @@
 #define MY_ENCAP_ALGS_SORT_H
 
 #include <vector>
+#include <algorithm>
 
 using std::vector;
 
@@ -16,8 +17,9 @@ public:
     void SelectionSort(vector<Type> &a);
     void InsertionSort(vector<Type> &a);
     void ShellSort(vector<Type> &a);
-    void MergeSort(vector<Type> &a, vector<Type> &aux,
+    void MergeSortDown(vector<Type> &a, vector<Type> &aux,
         int lo, int hi);
+    void MergeSortUp(vector<Type> &a);
     bool IsSorted(vector<Type> &a);
     void Show(vector<Type> &a);
 };
@@ -43,7 +45,7 @@ void AlgsSort<Type>::Merge(vector<Type> &a, vector<Type> &aux,
     for (int k = lo; k <= hi; k++) {
         aux[k] = a[k];
     }
-    
+
     int i = lo, j = mid+1;
     for (int k = lo; k <= hi; k++) {
         if (i > mid)
@@ -112,7 +114,7 @@ void AlgsSort<Type>::ShellSort(vector<Type> &a)
 }
 
 template <typename Type>
-void AlgsSort<Type>::MergeSort(vector<Type> &a, vector<Type> &aux,
+void AlgsSort<Type>::MergeSortDown(vector<Type> &a, vector<Type> &aux,
         int lo, int hi)
 {
     if (hi <= lo) return;
@@ -120,6 +122,20 @@ void AlgsSort<Type>::MergeSort(vector<Type> &a, vector<Type> &aux,
     MergeSort(a, aux, lo, mid);
     MergeSort(a, aux, mid+1, hi);
     Merge(a, aux, lo, mid, hi);
+}
+
+template <typename Type>
+void AlgsSort<Type>::MergeSortUp(vector<Type> &a)
+{
+    int N = a.size();
+    vector<Type> aux(N);
+
+    for (int sz = 1; sz < N; sz = sz+sz) {
+        for (int lo = 0; lo < N-sz; lo += sz+sz) {
+            Merge(a, aux, 
+                lo, lo+sz-1, std::min(lo+sz+sz-1, N-1));
+        }
+    }
 }
 
 template <typename Type>
