@@ -10,10 +10,14 @@ class AlgsSort {
 private:
     bool Less(Type v, Type w);
     void Exch(vector<Type> &a, int i, int j);
+    void Merge(vector<Type> &a, vector<Type> &aux,
+        int lo, int mid, int hi);
 public:
     void SelectionSort(vector<Type> &a);
     void InsertionSort(vector<Type> &a);
     void ShellSort(vector<Type> &a);
+    void MergeSort(vector<Type> &a, vector<Type> &aux,
+        int lo, int hi);
     bool IsSorted(vector<Type> &a);
     void Show(vector<Type> &a);
 };
@@ -30,6 +34,27 @@ void AlgsSort<Type>::Exch(vector<Type> &a, int i, int j)
     Type t = a[i];
     a[i] = a[j];
     a[j] = t;
+}
+
+template <typename Type>
+void AlgsSort<Type>::Merge(vector<Type> &a, vector<Type> &aux,
+        int lo, int mid, int hi)
+{
+    for (int k = lo; k <= hi; k++) {
+        aux[k] = a[k];
+    }
+    
+    int i = lo, j = mid+1;
+    for (int k = lo; k <= hi; k++) {
+        if (i > mid)
+            a[k] = aux[j++];
+        else if (j > hi)
+            a[k] = aux[i++];
+        else if (Less(aux[i], aux[j]))
+            a[k] = aux[i++];
+        else
+            a[k] = aux[j++];
+    }
 }
 
 template <typename Type>
@@ -84,6 +109,17 @@ void AlgsSort<Type>::ShellSort(vector<Type> &a)
         }
         h = h/3;
     }
+}
+
+template <typename Type>
+void AlgsSort<Type>::MergeSort(vector<Type> &a, vector<Type> &aux,
+        int lo, int hi)
+{
+    if (hi <= lo) return;
+    int mid = lo + (hi - lo) / 2;
+    MergeSort(a, aux, lo, mid);
+    MergeSort(a, aux, mid+1, hi);
+    Merge(a, aux, lo, mid, hi);
 }
 
 template <typename Type>

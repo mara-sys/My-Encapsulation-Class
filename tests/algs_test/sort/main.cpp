@@ -14,7 +14,10 @@ int main(int argc, char *argv[])
     AlgsSort<string> sort;
     // sort.SelectionSort(a);
     // sort.InsertionSort(a);
-    sort.ShellSort(a);
+    // sort.ShellSort(a);
+    
+    vector<string> aux(a.size());
+    sort.MergeSort(a, aux, 0, a.size()-1);
     cout << sort.IsSorted(a) << endl;
     sort.Show(a);
 }

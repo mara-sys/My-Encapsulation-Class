@@ -37,7 +37,7 @@ buildlib : $(BUILD_FILE)
 	ar -r lib/$(LIBENCAP) $(BUILD_FILE)
 
 
-$(BUILD_FILE) : build/%.o : %.cpp
+$(BUILD_FILE) : build/%.o : %.cpp $(INC_FILE)
 	@echo $<
 	g++ $(INCLUDES) -c $< -o $@
 
