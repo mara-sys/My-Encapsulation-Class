@@ -10,7 +10,7 @@ int main()
 {
 	cout << "hello world" << endl;
 
-    EncapDebug::PrintFileFuncLine();
+    PRINT_FILE_FUNC_LINE;
 
     double a = 3.5;
     int b = 5;
