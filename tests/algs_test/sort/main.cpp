@@ -12,7 +12,9 @@ int main(int argc, char *argv[])
     in.ReadAllStrings(a);
 
     AlgsSort<string> sort;
-    sort.SelectionSort(a);
+    // sort.SelectionSort(a);
+    // sort.InsertionSort(a);
+    sort.ShellSort(a);
     cout << sort.IsSorted(a) << endl;
     sort.Show(a);
 }
