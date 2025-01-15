@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <algorithm>
+#include <random>
 
 using std::vector;
 
@@ -13,6 +14,8 @@ private:
     void Exch(vector<Type> &a, int i, int j);
     void Merge(vector<Type> &a, vector<Type> &aux,
         int lo, int mid, int hi);
+    void QuickSort(vector<Type> &a, int lo, int hi);
+    int Partition(vector<Type> &a, int lo, int hi);
 public:
     void SelectionSort(vector<Type> &a);
     void InsertionSort(vector<Type> &a);
@@ -20,6 +23,7 @@ public:
     void MergeSortDown(vector<Type> &a, vector<Type> &aux,
         int lo, int hi);
     void MergeSortUp(vector<Type> &a);
+    void QuickSort(vector<Type> &a);
     bool IsSorted(vector<Type> &a);
     void Show(vector<Type> &a);
 };
@@ -57,6 +61,39 @@ void AlgsSort<Type>::Merge(vector<Type> &a, vector<Type> &aux,
         else
             a[k] = aux[j++];
     }
+}
+
+template <typename Type>
+void AlgsSort<Type>::QuickSort(vector<Type> &a, int lo, int hi)
+{
+    if (hi <= lo)
+        return;
+    int j = Partition(a, lo, hi);
+    QuickSort(a, lo, j-1);
+    QuickSort(a, j+1, hi);
+}
+
+template <typename Type>
+int AlgsSort<Type>::Partition(vector<Type> &a, int lo, int hi)
+{
+    int i = lo, j = hi + 1;
+    Type v = a[lo];
+
+    while (true) {
+        while (Less(a[++i], v)) {
+            if (i == hi)
+                break;
+        }
+        while (Less(v, a[--j])) {
+            if (j == lo)
+                break;
+        }
+        if (i >= j)
+            break;
+        Exch(a, i, j);
+    }
+    Exch(a, lo, j);
+    return j;
 }
 
 template <typename Type>
@@ -136,6 +173,15 @@ void AlgsSort<Type>::MergeSortUp(vector<Type> &a)
                 lo, lo+sz-1, std::min(lo+sz+sz-1, N-1));
         }
     }
+}
+
+template <typename Type>
+void AlgsSort<Type>::QuickSort(vector<Type> &a)
+{
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::shuffle(a.begin(), a.end(), g);
+    QuickSort(a, 0, a.size() - 1);
 }
 
 template <typename Type>

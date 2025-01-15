@@ -19,7 +19,9 @@ int main(int argc, char *argv[])
     // vector<string> aux(a.size());
     // sort.MergeSortDown(a, aux, 0, a.size()-1);
 
-    sort.MergeSortUp(a);
+    // sort.MergeSortUp(a);
+
+    sort.QuickSort(a);
 
     cout << sort.IsSorted(a) << endl;
     sort.Show(a);
