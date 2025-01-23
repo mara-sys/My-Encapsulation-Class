@@ -17,6 +17,11 @@ private:
     bool IsLeapYear(int y);
 public:
     /**
+     * Default constructor
+     */
+    EncapDate() {}
+
+    /**
      * Initializes a new date from the month, day, and year.
      * @param month the month (between 1 and 12)
      * @param day the day (between 1 and 28-31, depending on the month)

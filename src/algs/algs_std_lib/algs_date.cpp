@@ -44,7 +44,7 @@ EncapDate::EncapDate(std::string date)
     day_ = std::stoi(fields[1]);
     year_ = std::stoi(fields[2]);
     
-    if (IsValid(month_, day_, year_))
+    if (!IsValid(month_, day_, year_))
         throw "Invalid date";
 }
 
@@ -65,6 +65,11 @@ bool EncapDate::IsAfter(EncapDate that)
 bool EncapDate::IsBefore(EncapDate that)
 {
     return *this < that;
+}
+
+int EncapDate::HashCode()
+{
+    return day_ + 31*month_ + 31*12*year_;
 }
 
 bool EncapDate::operator<(const EncapDate &that) const
