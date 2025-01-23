@@ -1,7 +1,9 @@
 #include
 #src
 #bin
-#
+#build
+#lib		Store the generated lib file
+#exe_test	Store the executable file
 
 TARGET = ./tests/cout_format
 EXE = $(notdir $(TARGET)).exe
@@ -27,8 +29,8 @@ BUILD_FILE = $(patsubst %.cpp, build/%.o, $(notdir $(SRC_FILE)))
 
 VPATH = $(SRC_FILE_PATH)
 
-$(EXE) : $(BUILD_FILE)
-	g++ $(BUILD_FILE) -o $(EXE)
+$(EXE) : build_dir $(BUILD_FILE)
+	g++ -std=c++17 $(BUILD_FILE) -o $(EXE)
 	mv $(EXE) ./exe_test/
 
 # generate static lib
@@ -39,8 +41,12 @@ buildlib : $(BUILD_FILE)
 
 $(BUILD_FILE) : build/%.o : %.cpp $(INC_FILE)
 	@echo $<
-	g++ $(INCLUDES) -c $< -o $@
+	g++ -std=c++17 $(INCLUDES) -c $< -o $@
 
+build_dir:
+	mkdir -p $(CURT_DIR)/build
+	mkdir -p $(CURT_DIR)/lib
+	mkdir -p $(CURT_DIR)/exe_test
 
 clean:
 	rm -f ./build/*.o ./lib/* $(EXE) ./exe_test/*.exe
